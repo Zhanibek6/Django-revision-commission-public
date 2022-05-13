@@ -1,0 +1,116 @@
+{% extends 'revision_commissions/base2.html' %} 
+
+{% block content %}
+<div class="container-fluid col-md-10 col-md-offset-1">
+
+<div class="card">
+  <h5 class="card-header">Данные организации:</h5>
+  <div class="card-body">
+
+    <p class="card-title fw-bold">
+      <b>Наименование организации:</b> {{ organization.name }}
+    </p>
+
+    <p class="card-title fw-bold">
+      <b>Годовой объем финансирования учреждения:</b> {{ organization.annualFunding.normalize }}
+    </p>
+    <p class="card-title fw-bold">
+      <b>Объем финансирования на конец финансового года:</b> {{ organization.finEndYear.normalize }}
+    </p>
+    <p class="card-title fw-bold">
+      <b
+        >Кассовый расход(исполнение плаченных обязательств по бюджетным
+        программам (подпрограммам):</b
+      >
+      {{ organization.cashExpense.normalize }}
+    </p>
+    <p class="card-title fw-bold">
+      <b>Дата проведения последней проверки:</b> {{ organization.dateLastCheck|date:"m.d.Y" }}
+    </p>
+    <p class="card-title fw-bold">
+      <b>Фактическая дата на конец отчетного периода:</b> {{ organization.dateReport|date:"m.d.Y" }}
+    </p>
+    <p class="card-title fw-bold">
+      <b>Объем выявленных финансовых нарушений:</b> {{ organization.finViolations.normalize }}
+    </p>
+    <p class="card-title fw-bold">
+      <b>Объем востановленных/возмещенных средств:</b> {{ organization.volRecoverFin.normalize }}
+    </p>
+    <p class="card-title fw-bold">
+      <b>Объем дебиторской задолженности текущего периода:</b> {{ organization.volReceivableCurrent.normalize }}
+    </p>
+    <p class="card-title fw-bold">
+      <b>Объем дебиторской задолженности прошлого периода:</b> {{ organization.volReceivablePrevious.normalize }}
+    </p>
+    <p class="card-title fw-bold">
+      <b>Объем кредиторской задолженности текущего периода:</b> {{ organization.payableCurrent.normalize }}
+    </p>
+    <p class="card-title fw-bold">
+      <b>Объем кредиторской задолженности прошлого периода:</b> {{ organization.payablePrevious.normalize }}
+    </p>
+
+    <p class="card-title fw-bold">
+      <b>Коррупционные и уголовные действия при освоении бюджетных средств: </b> {{ organization.illegalActions }}
+    </p>
+
+    <p class="card-title fw-bold">
+      <b>Дисциплинарные взыскания, дискредитирующие государственную службу: </b> {{ organization.disciplineSanctions }}
+    </p>
+
+    <p class="card-title fw-bold">
+      <b>Количество сотрудников, привлеченных к дисциплинарной ответственности советом по этике: </b> {{ organization.employeeEthics }}
+    </p>
+
+    <p class="card-title fw-bold">
+      <b>Административные меры в результате выявленных нарушений по государственным закупкам: </b> {{ organization.administrativeMeasures }}
+    </p>
+
+    <p class="card-title fw-bold">
+      <b>Дисциплинарные меры в результате выявленных нарушений по государственным закупкам: </b> {{ organization.disciplineMeasures }}
+    </p>
+
+    <p class="card-title fw-bold">
+      <b>Увольнение в результате выявленных нарушений по государственным закупкам: </b> {{ organization.firedViolation }}
+    </p>
+
+    <p class="card-title fw-bold">
+      <b>Объем уставного капитала текущего периода: </b> {{ organization.volAuthorizedCapitalCurrent.normalize }}
+    </p>
+
+    <p class="card-title fw-bold">
+      <b>Объем уставного капитала прошлого периода: </b> {{ organization.volAuthorizedCapitalPrevious.normalize }}
+    </p>
+
+    <p class="card-title fw-bold">
+      <b>Объем чистой прибыли текущего периода: </b> {{ organization.volIncomeCurrent.normalize }}
+    </p>
+
+    <p class="card-title fw-bold">
+      <b>Объем чистой прибыли прошлого периода: </b> {{ organization.volIncomePrevious.normalize }}
+    </p>
+
+    <p class="card-title fw-bold">
+      <b>Объем дивидендов текущего периода: </b> {{ organization.volDividentsCurrent.normalize }}
+    </p>
+
+    <p class="card-title fw-bold">
+      <b>Объем административных расходов текущего периода: </b> {{ organization.volAdministrativeSpendings.normalize }}
+    </p>
+
+    <div class="d-flex flex-row">
+      <a
+        href="{% url 'revision_commissions:edit_organization' organization.id organization.type %}"
+        class="btn btn-outline-primary m-4"
+        >Редактировать</a
+      >
+
+      <a
+        href="{% url 'revision_commissions:orgnaization_info' organization.id organization.type %}"
+        class="btn btn-outline-primary m-4"
+        >Таблица</a
+      >
+      </div>
+  </div>
+</div>
+</div>
+{% endblock content %}

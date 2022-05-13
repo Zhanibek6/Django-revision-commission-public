@@ -1,0 +1,11 @@
+{% extends "revision_commissions/base2.html" %}
+
+<!-- FORMS -->
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container-fluid col-md-10 col-md-offset-1">
+	<a href="{% url 'revision_commissions:new_organization_gu' %}" class="btn btn-outline-primary m-4">Добавить организацию ГУ</a>
+    <a href="{% url 'revision_commissions:new_organization_kvazi' %}" class="btn btn-outline-primary m-4">Добавить организацию КВАЗИ</a>
+</div>
+{% endblock content %}

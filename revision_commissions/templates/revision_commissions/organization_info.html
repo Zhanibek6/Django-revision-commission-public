@@ -1,0 +1,36 @@
+{% extends 'revision_commissions/base2.html' %}
+
+{% block content %}
+    <table class="table table-striped">
+        <thead >
+            <tr>
+                <th>#</th>
+                <th>Наименование критерия</th>
+                <th>Значение</th>
+                <th>Балл</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for array in data %}
+                {% if forloop.counter == 1 %}
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ array.0 }}</td>
+                    <td>{{ array.1|slice:":-11" }} тенге</td>
+                    <td>{{ array.2 }}</td>
+                {% else %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ array.0 }}</td>
+                    <td>{{ array.1 }}</td>
+                    <td>{{ array.2 }}</td>
+                </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+    <a
+        href="{% url 'revision_commissions:download' id type %}"
+        class="btn btn-outline-primary m-4"
+        >Экспортировать в excel</a
+    >
+{% endblock %}

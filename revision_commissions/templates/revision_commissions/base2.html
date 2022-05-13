@@ -1,0 +1,101 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link
+      rel="stylesheet"
+      href="{% static 'revision_commissions/css/bootstrap.css' %}"
+    />
+      <script src="{% static 'revision_commissions/js/bootstrap.min.js' %}"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Ревизионная комиссия</title>
+  </head>
+  <body>
+
+  <!-- FIRST NAV -->
+  <nav class="navbar navbar-dark py-3" style="background-color: #1f3c88;">
+  <div class="container-fluid col-md-10 col-md-offset-1">
+    <a class="navbar-brand" href="{% url 'revision_commissions:index' %}">
+      <div class="row ">
+        <img src="{% static 'revision_commissions/images/gerb.png' %}" alt="" width="75" height="75" class="d-inline-block align-text-top">
+        <p class="h3 p-3">Ревизионная комиссия Байзакского района</p>
+      </div>
+    </a>
+  </div>
+</nav>
+<!-- END OF FIRST NAV -->
+	
+<hr style="background-color: #4c64a0; margin:0px">
+<!-- ACTUAL NAVIGATIONG BAR NOW -->
+<nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #1f3c88;">
+  <div class="container-fluid col-md-10 col-md-offset-1">
+
+    <!-- Toggler/collapsibe Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="{% url 'revision_commissions:organizations' %}">Организации</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'revision_commissions:reports' %}">Отчеты</a>
+        </li>
+
+      </ul>
+      <!-- Login/register -->
+      <ul class="nav navbar-nav ml-auto">
+        <!-- Если пользователь в аккаунте -->
+            {% if request.user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link"
+                >{{ user.first_name }}
+                </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="btn btn-danger"
+                href="{% url 'revision_commissions:logout' %}"
+                >Выход</a
+              >
+            </li>
+
+            {% else %}
+            <li class="nav-item">
+              <a
+                class="btn btn-outline-success"
+                href="{% url 'revision_commissions:register' %}"
+                >Регистрация</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="btn btn-primary"
+                href="{% url 'revision_commissions:login' %}"
+                >Вход</a
+              >
+            </li>
+            {% endif %}
+      </ul>
+      <!-- END of login -->
+    </div>
+  </div>
+</nav>
+<!--END OF SECOND Navbar-->
+<div class="container-fluid col-md-10 col-md-offset-1">
+</div>
+  <div>
+    {% block content %}
+    {% endblock %}
+  </div>
+  </body>
+
+</footer>
+</html>

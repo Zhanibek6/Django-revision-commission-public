@@ -1,0 +1,25 @@
+{% extends "revision_commissions/base2.html" %}
+
+
+{% block content %}
+	<div class="container-fluid col-md-10 col-md-offset-1">
+
+	<h5 class="m-4">Данные учреждений.</h5>
+	<ul class="list-group list-group-flush">
+		{% for organization in organizations %}
+			{% if organization.type == "ГУ" %}
+			<li class="list-group-item list-group-item-action">
+				<a href="{% url 'revision_commissions:organization_gu' organization.id %}">{{ organization }}</a>
+			</li>
+			{% elif organization.type == "КВАЗИ" %}
+			<li class="list-group-item list-group-item-action">
+				<a href="{% url 'revision_commissions:organization_kvazi' organization.id %}">{{ organization }}</a>
+			</li>
+			{% endif %}
+		{% empty %}
+			<li class="list-group-item list-group-item-action disabled">Данные учреждений отсутствуют.</li>
+		{% endfor %}
+	</ul>
+	<a href="{% url 'revision_commissions:new_organization_choice' %}" class="btn btn-outline-primary m-4">Добавить организацию</a>
+	</div>
+{% endblock content %}

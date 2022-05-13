@@ -1,0 +1,40 @@
+{% extends "revision_commissions/base2.html" %}
+
+{% block content %}
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>#</th>
+                <th>Дата заполнения</th>
+                <th>Наименование</th>
+                <th>Баллы</th>
+                <th>Группа риска</th>
+                <th>ФИО сотрудника</th>
+                <th>Номер телефона</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for organization in organizations %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ organization.updated_at|date:"m.d.Y H:i" }}</td>
+                    {% if organization.type == "ГУ" %}
+                        <td><a href="{% url 'revision_commissions:organization_gu' organization.id %}">{{ organization.name }}</a></td>
+                    {% elif organization.type == "КВАЗИ" %}
+                        <td><a href="{% url 'revision_commissions:organization_kvazi' organization.id %}">{{ organization.name }}</a></td>
+                    {% endif %}
+                    <td>{{ organization.score }}</td>
+                    <td>{{ organization.risk }}</td>
+                    <td>{{ organization.user.first_name }} {{ organization.user.last_name }}</td>
+                    <td>{{ organization.user.phone_number }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a
+    href="{% url 'revision_commissions:download_reports' %}"
+    class="btn btn-outline-primary m-4"
+    >Экспортировать в excel</a
+    >
+{% endblock %}

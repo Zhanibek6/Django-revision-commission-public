@@ -1,0 +1,7 @@
+rc_env/
+env/
+__pycache__/
+exports/
+*.sqlite3
+.env
+settings.py
