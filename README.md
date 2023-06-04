@@ -15,4 +15,4 @@ Website used for entering data about an organization, storing and using it to ge
 * The databse is by default Sqlite
 * The basic design was created using bootstrap components
 
-## [Live demo](https://revision-commission.herokuapp.com/)
+
